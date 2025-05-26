@@ -16,9 +16,9 @@
 - [X] Create UserRepository interface
 
 ### ✨ Milestone 3: Basic API Structure
-- [ ] Create UserController with basic endpoints
-- [ ] Set up global exception handler
-- [ ] Create first DTO classes
+- [X] Create UserController with basic endpoints
+- [X] Set up global exception handler
+- [X] Create first DTO classes
 - [ ] Test first GET endpoint with Postman
 - [ ] Set up basic logging configuration
 
