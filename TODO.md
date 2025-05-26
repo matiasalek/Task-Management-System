@@ -4,8 +4,8 @@
 
 ### ✨ Milestone 1: Project Setup
 - [X] Create Spring Boot project with required dependencies
-- [ ] Set up PostgreSQL database connection
-- [ ] Configure application.properties for different environments
+- [X] Set up PostgreSQL database connection
+- [X] Configure application.properties for different environments
 - [X] Create basic project structure with packages
 - [X] Set up Git repository with proper .gitignore
 
