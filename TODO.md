@@ -12,7 +12,6 @@
 ### ✨ Milestone 2: Database Foundation
 - [ ] Create User entity with basic fields
 - [ ] Set up JPA configuration
-- [ ] Create first migration script
 - [ ] Test database connection
 - [ ] Create UserRepository interface
 
