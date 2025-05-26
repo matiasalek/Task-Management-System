@@ -10,10 +10,10 @@
 - [X] Set up Git repository with proper .gitignore
 
 ### ✨ Milestone 2: Database Foundation
-- [ ] Create User entity with basic fields
-- [ ] Set up JPA configuration
-- [ ] Test database connection
-- [ ] Create UserRepository interface
+- [X] Create User entity with basic fields
+- [X] Set up JPA configuration
+- [X] Test database connection
+- [X] Create UserRepository interface
 
 ### ✨ Milestone 3: Basic API Structure
 - [ ] Create UserController with basic endpoints
