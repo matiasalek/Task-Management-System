@@ -19,7 +19,7 @@
 - [X] Create UserController with basic endpoints
 - [X] Set up global exception handler
 - [X] Create first DTO classes
-- [ ] Test first GET endpoint with Postman
+- [X] Test first GET endpoint with Postman
 - [ ] Set up basic logging configuration
 
 ## Phase 2: User Management (Days 6-12)
