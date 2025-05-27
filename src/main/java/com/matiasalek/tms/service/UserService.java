@@ -1,6 +1,7 @@
 package com.matiasalek.tms.service;
 
-import com.matiasalek.tms.dto.UserDTO;
+import com.matiasalek.tms.dto.UserCreateDTO;
+import com.matiasalek.tms.dto.UserResponseDTO;
 import com.matiasalek.tms.exception.ResourceNotFoundException;
 import com.matiasalek.tms.model.User;
 import com.matiasalek.tms.repository.UserRepository;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -19,38 +21,48 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+
+        return users.stream()
+                .map(user -> new UserResponseDTO(
+                        user.getId(),
+                        user.getName(),
+                        user.getLastName(),
+                        user.getEmail(),
+                        user.getRole()
+                ))
+                .collect(Collectors.toList());
     }
 
     @Transactional(readOnly = true)
-    public User getUserById(Long id){
-        return userRepository
-                .findById(id)
+    public UserResponseDTO getUserById(Long id){
+        User userResponse = userRepository.findById(id)
                 .orElseThrow(()-> new ResourceNotFoundException("User not found"));
+
+        return new UserResponseDTO(userResponse.getId(),
+                userResponse.getName(),
+                userResponse.getLastName(),
+                userResponse.getEmail(),
+                userResponse.getRole());
     }
 
-    public User createUser(UserDTO userDTO) {
-        if (userDTO.getId() != null) {
-            throw new ResourceNotFoundException("User already exists");
-        }
-
+    public User createUser(UserCreateDTO userCreateDTO) {
         User user = new User();
-        user.setName(userDTO.getName());
-        user.setPassword(userDTO.getPassword());
-        user.setEmail(userDTO.getEmail());
-        user.setRole(userDTO.getRole());
+        user.setName(userCreateDTO.getName());
+        user.setLastName(userCreateDTO.getLastName());
+        user.setEmail(userCreateDTO.getEmail());
+        user.setRole(userCreateDTO.getRole());
 
         return userRepository.save(user);
     }
 
-    public User updateUser(Long id, UserDTO userDTO){
+    public User updateUser(Long id, UserResponseDTO userResponseDTO){
         return userRepository.findById(id)
                 .map(user -> {
-                    user.setName(userDTO.getName());
-                    user.setPassword(userDTO.getPassword());
-                    user.setEmail(userDTO.getEmail());
-                    user.setRole(userDTO.getRole());
+                    user.setName(userResponseDTO.getName());
+                    user.setEmail(userResponseDTO.getEmail());
+                    user.setRole(userResponseDTO.getRole());
                     return userRepository.save(user);
                 })
                 .orElseThrow(()-> new ResourceNotFoundException("User not found with ID:" + id));

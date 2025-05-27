@@ -1,6 +1,7 @@
 package com.matiasalek.tms.controller;
 
-import com.matiasalek.tms.dto.UserDTO;
+import com.matiasalek.tms.dto.UserCreateDTO;
+import com.matiasalek.tms.dto.UserResponseDTO;
 import com.matiasalek.tms.model.User;
 import com.matiasalek.tms.repository.UserRepository;
 import com.matiasalek.tms.service.UserService;
@@ -22,31 +23,31 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllInventories() {
-        List<User> inventories = userService.getAllUsers();
-        return ResponseEntity.ok(inventories);
+    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
+        List<UserResponseDTO> users = userService.getAllUsers();
+        return ResponseEntity.ok(users);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) {
-        User user = userService.getUserById(id);
+    public ResponseEntity<UserResponseDTO> getUserById(@PathVariable Long id) {
+        UserResponseDTO user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
-        User createdUser = userService.createUser(userDTO);
+    public ResponseEntity<User> createUser(@RequestBody UserCreateDTO UserCreateDTO) {
+        User createdUser = userService.createUser(UserCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateInventory(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        User updatedInventory = userService.updateUser(id, userDTO);
-        return ResponseEntity.ok(updatedInventory);
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserResponseDTO userResponseDTO) {
+        User updatedUser = userService.updateUser(id, userResponseDTO);
+        return ResponseEntity.ok(updatedUser);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteInventory(@PathVariable Long id) {
+    public ResponseEntity<User> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

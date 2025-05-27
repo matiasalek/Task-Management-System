@@ -1,7 +1,7 @@
 # Task Management System API - Complete Milestone Checklist
 
 ## Phase 1: Project Foundation (Days 1-5)
-
+#### Start: 26/5/2025
 ### ✨ Milestone 1: Project Setup
 - [X] Create Spring Boot project with required dependencies
 - [X] Set up PostgreSQL database connection
@@ -32,7 +32,7 @@
 - [ ] Create custom error responses
 
 ### ✨ Milestone 5: Authentication Setup
-- [ ] Add Spring Security dependency
+- [X] Add Spring Security dependency
 - [ ] Create JWT utility class
 - [ ] Implement login endpoint
 - [ ] Create authentication filter
